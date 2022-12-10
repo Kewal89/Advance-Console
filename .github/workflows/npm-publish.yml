@@ -35,38 +35,22 @@ jobs:
       - name: "Creating Package Bundle..."
         run: yarn build
       - name: "Post Build..."
-        run: ls      
-      
-  publish-github:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+        run: cd build
+      - name: "Publishing To GitHub..."
+        run: ls  
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          registry-url: https://npm.pkg.github.com/     
-      - name: "Publishing To GitHub..."
-        run: pwd
-      - run: ls
-      - run: cd build
-      - run: ls
+          registry-url: https://npm.pkg.github.com/
       - run: npm publish    
         env:
           NODE_AUTH_TOKEN: ${{secrets.GIT_TOKEN}}
-          
-  publish-npmjs:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
+      - name: "Publishing To npmjs..."
+        run: ls
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          registry-url: https://registry.npmjs.org/      
-      - name: "Publishing To npmjs..."
-        run: pwd
-      - run: cd build
+          registry-url: https://registry.npmjs.org/
       - run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}          
