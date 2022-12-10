@@ -58,22 +58,12 @@ const VSConsole = (props) => {
     for (var i = 0; i < HIGHLIGHT_TEXT.length; i++) {
       var RegExText = new RegExp(HIGHLIGHT_TEXT[i], "g")
       // console.info("Before DEBUGGING :", renderText)
-      renderText = renderText.replace(
-        RegExText,
-        conText + conBG + HIGHLIGHT_TEXT[i] + RESET_ALL
-      )
+      renderText = renderText.replace(RegExText, conText + conBG + HIGHLIGHT_TEXT[i] + RESET_ALL)
       // console.info("After DEBUGGING :", renderText)
     }
   } else {
     const stringText = props.text ? JSON.stringify(props.text) : ""
-    renderText =
-      conText +
-      conBG +
-      props.label +
-      " " +
-      (COLOR_LABEL_TEXT ? "" : RESET_ALL) +
-      stringText +
-      RESET_ALL
+    renderText = conText + conBG + props.label + " " + (COLOR_LABEL_TEXT ? "" : RESET_ALL) + stringText + RESET_ALL
   }
   // console.info("===DEBUG===\n", renderText)
   try {
