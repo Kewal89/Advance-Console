@@ -4,9 +4,7 @@
 name: Advance Console Package
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch
 
 jobs:
   build:
