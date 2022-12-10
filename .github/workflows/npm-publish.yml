@@ -34,8 +34,10 @@ jobs:
         with:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
+      - name: "Bumping Version..."
+        run: npm version patch
       - name: "Publishing To GitHub..."
-        run: npm publish
+        run: npm publish      
         env:
           NODE_AUTH_TOKEN: ${{secrets.GIT_TOKEN}}
           
@@ -48,6 +50,8 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
+      - name: "Bumping Version..."
+        run: npm version patch
       - name: "Publishing To npmjs..."
         run: npm publish
         env:
