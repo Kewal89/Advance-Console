@@ -31,12 +31,12 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          registry-url: https://npm.pkg.github.com/     
-      
+          registry-url: https://npm.pkg.github.com/      
       - name: "Pulling Yarn..."
         uses: Borales/actions-yarn@v4.2.0
         with:
           cmd: install
+      - run: VERSION=$(node -p "require('./package.json').version")
       - name: "Creating Package Bundle..."
         run: yarn build
       - name: "Switching Directory > Build..."
@@ -62,6 +62,7 @@ jobs:
         uses: Borales/actions-yarn@v4.2.0
         with:
           cmd: install
+      - run: VERSION=$(node -p "require('./package.json').version")
       - name: "Creating Package Bundle..."
         run: yarn build
       - name: "Switching Directory > Build..."
