@@ -1,9 +1,12 @@
 {
-  "name": "advance-console",
+  "name": "@kewal89/advance-console",
   "version": "1.0.0",
   "description": "Advance Consoles For VS Code & Browsers",
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
+    "start": "node build/index.js --watch",
+    "dev": "nodemon src/index.ts",
+    "build": "npx tsc -p .",
     "test": "yarn test"
   },
   "repository": {
@@ -22,5 +25,11 @@
   "bugs": {
     "url": "https://github.com/Kewal89/Advance-Console/issues"
   },
-  "homepage": "https://github.com/Kewal89/Advance-Console#readme"
+  "homepage": "https://github.com/Kewal89/Advance-Console#readme",
+  "devDependencies": {
+    "@types/node": "^18.11.12",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
+  }
 }
