@@ -36,6 +36,8 @@ jobs:
           registry-url: https://npm.pkg.github.com/
       - name: "Publishing To GitHub..."
         run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GIT_TOKEN}}
           
   publish-npmjs:
     needs: build
@@ -49,4 +51,4 @@ jobs:
       - name: "Publishing To npmjs..."
         run: npm publish
         env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
