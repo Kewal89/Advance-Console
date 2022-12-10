@@ -1,0 +1,26 @@
+{
+  "name": "advance-console",
+  "version": "1.0.0",
+  "description": "Advance Consoles For VS Code & Browsers",
+  "main": "index.js",
+  "scripts": {
+    "test": "yarn test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kewal89/Advance-Console.git"
+  },
+  "keywords": [
+    "console",
+    "log",
+    "warn",
+    "error",
+    "info"
+  ],
+  "author": "Kewal89",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Kewal89/Advance-Console/issues"
+  },
+  "homepage": "https://github.com/Kewal89/Advance-Console#readme"
+}
