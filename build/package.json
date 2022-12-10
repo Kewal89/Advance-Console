@@ -4,18 +4,16 @@
     "type": "git",
     "url": "git+https://github.com/Kewal89/Advance-Console.git"
   },
-  "version": "0.0.9",
+  "version": "1.0.23",
   "description": "Advance Consoles For VS Code & Browsers. Created For Fun. Not For Production.",
   "main": "build/index.js",
   "types": "src/types/index.d.ts",
   "scripts": {
     "dev": "yarn build && nodemon src/index.ts",
     "build": "rm -rf build/ && npx tsc && cp -R src/types build && prettier --write build/**/*",
-    "build:esm": "npx tsc",
-    "build:cjs": "npx tsc --module CommonJS --outDir build/cjs",
     "postbuild": "cp package.json build/package.json && cp README.md build/README.md && cp LICENSE build/LICENSE",
-    "pub1": "npm publish --access public --registry=https://npm.pkg.github.com",
-    "pub2": "npm publish --access public --registry=https://registry.npmjs.org --force",
+    "pub1": "yarn publish --access public --registry=https://npm.pkg.github.com",
+    "pub2": "yarn publish --access public --registry=https://registry.npmjs.org --force",
     "pub": "yarn build && cd build && yarn pub1 && yarn pub2"
   },
   "publishConfig": {
