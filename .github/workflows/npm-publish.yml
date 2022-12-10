@@ -34,6 +34,8 @@ jobs:
           cmd: install
       - name: "Creating Package Bundle..."
         run: yarn build
+      - name: "Post Build..."
+        run: ls      
       
   publish-github:
     needs: build
@@ -46,7 +48,9 @@ jobs:
           registry-url: https://npm.pkg.github.com/     
       - name: "Publishing To GitHub..."
         run: pwd
+      - run: ls
       - run: cd build
+      - run: ls
       - run: npm publish    
         env:
           NODE_AUTH_TOKEN: ${{secrets.GIT_TOKEN}}
