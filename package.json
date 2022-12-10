@@ -1,19 +1,22 @@
 {
   "name": "@kewal89/advance-console",
-  "version": "1.0.1",
+  "version": "0.0.2",
   "description": "Advance Consoles For VS Code & Browsers. Created For Fun. Not For Production.",
   "main": "src/index.ts",
   "scripts": {
     "dev": "yarn build && nodemon src/index.ts",
     "build": "npx tsc -p .",
-    "test": "yarn test"
+    "test": "yarn test",
+    "pub1": "yarn publish --access public --registry=https://npm.pkg.github.com",
+    "pub2": "yarn publish --access public --registry=https://registry.npmjs.org",
+    "pub": "yarn pub1 && yarn pub2"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Kewal89/Advance-Console.git"
+    "url": "git+https://github.com/Kewal89/Advance-Console.git",
+    "directory": "build"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com",
     "access": "public"
   },
   "keywords": [
