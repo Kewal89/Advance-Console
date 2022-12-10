@@ -13,6 +13,10 @@
     "type": "git",
     "url": "git+https://github.com/Kewal89/Advance-Console.git"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
+  },
   "keywords": [
     "console",
     "log",
