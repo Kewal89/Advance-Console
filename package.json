@@ -1,11 +1,10 @@
 {
   "name": "@kewal89/advance-console",
-  "version": "1.0.0",
-  "description": "Advance Consoles For VS Code & Browsers",
+  "version": "1.0.1",
+  "description": "Advance Consoles For VS Code & Browsers. Created For Fun. Not For Production.",
   "main": "src/index.ts",
   "scripts": {
-    "start": "node build/index.js --watch",
-    "dev": "nodemon src/index.ts",
+    "dev": "yarn build && nodemon src/index.ts",
     "build": "npx tsc -p .",
     "test": "yarn test"
   },

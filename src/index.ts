@@ -1,4 +1,4 @@
-import { VSConsoleTypes } from "./types/index.js"
+import { VSConsoleTypes, BSConsoleTypes } from "./types/index.js"
 
 const VSConsole = (props: VSConsoleTypes) => {
 
@@ -71,7 +71,8 @@ const VSConsole = (props: VSConsoleTypes) => {
       // console.info("After DEBUGGING :", renderText)
     }
   } else {
-    renderText = conText + conBG + props.label + (COLOR_LABEL_TEXT ? "" : RESET_ALL) + (props.text ? JSON.stringify(props.text) : "") + RESET_ALL
+    const stringText = props.text ? JSON.stringify(props.text) : ""
+    renderText = conText + conBG + props.label + " " + (COLOR_LABEL_TEXT ? "" : RESET_ALL) + stringText + RESET_ALL
   }
   // console.info("===DEBUG===\n", renderText)
 
@@ -90,20 +91,41 @@ const VSConsole = (props: VSConsoleTypes) => {
   }
 }
 
-const BSConsole = () => {
-  //TODO: Support For Browsers
-  return true
+const BSConsole = (props: BSConsoleTypes) => {
+
+  const CONSOLE_TYPE = props.type ?? "info"
+  const stringText = props.text ? JSON.stringify(props.text) : ""
+  var renderText = props.label + " " + stringText.substring(1, stringText.length - 1) // Console Text
+  const conText = props.textColor ?? ""
+  const conBG = props.bgColor ?? ""
+  // console.info("===DEBUG===\n", renderText)
+
+  const CSS = props.css ? props.css : "color:" + conText + ";background:" + conBG
+
+  try {
+    if (CONSOLE_TYPE === "info") {
+      console.info("%c" + renderText, CSS)
+    } else if (CONSOLE_TYPE === "log") {
+      console.log("%c" + renderText, CSS)
+    } else if (CONSOLE_TYPE === "warn") {
+      console.warn("%c" + renderText, CSS)
+    } else if (CONSOLE_TYPE === "error") {
+      console.error("%c" + renderText, CSS)
+    }
+  } catch (err) {
+    console.info("===FALLBACK CONSOLE===\n", props.text)
+  }
 }
 
 module.exports = { VSConsole, BSConsole }
 
 
 // Usage
-const randomText = "{Accuracy: 10, latitude: 12, limit: 10}"
-const position = "{Accuracy: 10, latitude: 12, longitude: 10}"
+// const randomText = "{Accuracy: 10, latitude: 12, limit: 10}"
+// const position = "{Accuracy: 10, latitude: 12, longitude: 10}"
 // Basic Usage
-VSConsole({ label: "Location Permission Denied", type: "info", textColor: "red", bgColor: "yellow" })
+// BSConsole({ label: "Location Permission Denied :", type: "info", text: "test", textColor: "red", bgColor: "yellow" })
 // Highlight Text
-VSConsole({ label: "Position :", text: randomText, highlight: "Accuracy", bgColor: "cyan" })
+// BSConsole({ label: "Position :", text: randomText, highlight: "Accuracy", bgColor: "cyan" })
 // Highlight Multiple Text
-VSConsole({ label: "Position :", text: position, highlight: ["latitude", "longitude"] })
+// BSConsole({ label: "Position :", text: position, highlight: ["latitude", "longitude"] })
