@@ -20,7 +20,7 @@ jobs:
         run: ls
       - run: git config user.email ${{secrets.G_EMAIL}}
       - run: git config user.name ${{secrets.G_AUTHOR}}
-      - run: npm version minor -m "v%s"
+      - run: npm version patch
       - run: VERSION=$(node -p "require('./package.json').version")
       - run: git tag ${VERSION}
       - run: git push "https://${{secrets.G_ACTOR}}:${{ secrets.GIT_TOKEN }}@github.com/${{secrets.G_ACTOR}}/Advance-Console.git" --follow-tags
@@ -42,6 +42,7 @@ jobs:
         with:
           node-version: 16
           registry-url: https://npm.pkg.github.com/
+      - run: cd build
       - name: "Publishing To GitHub..."
         run: npm publish      
         env:
@@ -56,6 +57,7 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
+      - run: cd build
       - name: "Publishing To npmjs..."
         run: npm publish
         env:
