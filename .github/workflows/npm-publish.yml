@@ -34,7 +34,6 @@ jobs:
           cmd: install
       - name: "Creating Package Bundle..."
         run: yarn build
-      - run: cd build
       
   publish-github:
     needs: build
