@@ -6,17 +6,10 @@ on:
       - main
 
 jobs:
-  build:
+  bump:
     runs-on: ubuntu-latest
     steps:
-      - name: "Checkout..."
-        uses: actions/checkout@v3      
-      - name: "Node Server..."
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          registry-url: https://npm.pkg.github.com/
-      - name: "Configuring Git..."
+      - name: "Bumping Version..."
         run: ls
       - run: git config user.email ${{secrets.G_EMAIL}}
       - run: git config user.name ${{secrets.G_AUTHOR}}
@@ -25,6 +18,18 @@ jobs:
       - run: git tag ${VERSION}
       - run: git push "https://${{secrets.G_ACTOR}}:${{ secrets.GIT_TOKEN }}@github.com/${{secrets.G_ACTOR}}/Advance-Console.git" --follow-tags
       - run: git push "https://${{secrets.G_ACTOR}}:${{ secrets.GIT_TOKEN }}@github.com/${{secrets.G_ACTOR}}/Advance-Console.git" --tags
+  
+  publish-github:
+    needs: bump
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout..."
+        uses: actions/checkout@v3      
+      - name: "Node Server..."
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://npm.pkg.github.com/     
       
       - name: "Pulling Yarn..."
         uses: Borales/actions-yarn@v4.2.0
@@ -37,4 +42,30 @@ jobs:
       - name: "Publishing To GitHub..."
         run: npm publish   
         env:
-          NODE_AUTH_TOKEN: ${{secrets.GIT_TOKEN}}     
+          NODE_AUTH_TOKEN: ${{secrets.GIT_TOKEN}}
+          
+  publish-npmjs:
+    needs: bump
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout..."
+        uses: actions/checkout@v3      
+      - name: "Node Server..."
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/
+          
+      - name: "Pulling Yarn..."
+        uses: Borales/actions-yarn@v4.2.0
+        with:
+          cmd: install
+      - name: "Creating Package Bundle..."
+        run: yarn build
+      - name: "Switching Directory > Build..."
+        run: cd build
+      - name: "Publishing To GitHub..."
+        run: npm publish   
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}        
+  
