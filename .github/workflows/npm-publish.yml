@@ -16,7 +16,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-      - name: "Configuring Git..."     
+      - name: "Configuring Git..."
+        run: ls
       - run: git config user.email ${{secrets.G_EMAIL}}
       - run: git config user.name ${{secrets.G_AUTHOR}}
       - run: npm version minor -m "v%s"
