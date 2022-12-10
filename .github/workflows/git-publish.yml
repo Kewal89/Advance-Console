@@ -9,6 +9,8 @@ jobs:
   bump:
     runs-on: ubuntu-latest
     steps:
+      - name: "Checkout..."
+        uses: actions/checkout@v3     
       - name: "Bumping Version..."
         run: ls
       - run: git config user.email ${{secrets.G_EMAIL}}
