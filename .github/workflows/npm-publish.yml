@@ -20,7 +20,8 @@ jobs:
           node-version: 16
       - name: "Pulling Yarn..."
         uses: Borales/actions-yarn@v4.2.0
-
+        with:
+          cmd: install
       - name: "Creating Package Bundle..."
         run: yarn build
       
