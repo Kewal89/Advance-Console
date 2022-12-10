@@ -32,6 +32,7 @@ jobs:
           cmd: install
       - name: "Creating Package Bundle..."
         run: yarn build
+      - run: cd build
       
   publish-github:
     needs: build
@@ -41,10 +42,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          registry-url: https://npm.pkg.github.com/
-      - run: cd build
+          registry-url: https://npm.pkg.github.com/     
       - name: "Publishing To GitHub..."
-        run: npm publish      
+        run: pwd
+      - run: cd build
+      - run: npm publish    
         env:
           NODE_AUTH_TOKEN: ${{secrets.GIT_TOKEN}}
           
@@ -56,9 +58,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          registry-url: https://registry.npmjs.org/
-      - run: cd build
+          registry-url: https://registry.npmjs.org/      
       - name: "Publishing To npmjs..."
-        run: npm publish
+        run: pwd
+      - run: cd build
+      - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
