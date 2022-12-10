@@ -38,19 +38,11 @@ jobs:
         run: cd build
       - name: "Publishing To GitHub..."
         run: ls  
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          registry-url: https://npm.pkg.github.com/
-      - run: npm publish    
+      - run: yarn pub1   
         env:
           NODE_AUTH_TOKEN: ${{secrets.GIT_TOKEN}}
       - name: "Publishing To npmjs..."
-        run: ls
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
-          registry-url: https://registry.npmjs.org/
-      - run: npm publish
+        run: ls      
+      - run: yarn pub2
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}          
