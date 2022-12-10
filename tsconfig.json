@@ -5,10 +5,8 @@
     "moduleResolution": "NodeNext",
     "sourceMap": false,
     "outDir": "build",
-    "lib": [
-      "es6"
-    ],
-    "allowJs": true,    
+    "declaration": true,
+    "allowJs": true,
     "strict": true,
     "noImplicitAny": true,
     "esModuleInterop": true,
