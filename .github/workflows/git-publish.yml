@@ -1,8 +1,9 @@
 name: GitHub Publish Flow
+
 on:
   push:
     tags:        
-      - '**'
+      - '*'
 
 jobs:
   publish-github:
