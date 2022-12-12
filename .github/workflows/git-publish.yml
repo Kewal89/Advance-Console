@@ -2,11 +2,6 @@ name: GitHub Publish Flow
 
 on:
   workflow_dispatch:
-    inputs:
-      test:
-        type: boolean
-        default: true
-        description: Trigger Publishing...
 
 jobs:
   publish-github:
