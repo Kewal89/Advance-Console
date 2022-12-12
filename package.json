@@ -4,7 +4,7 @@
     "type": "git",
     "url": "git+https://github.com/Kewal89/Advance-Console.git"
   },
-  "version": "1.1.15",
+  "version": "1.1.16",
   "description": "Advance Consoles For VS Code & Browsers. Created For Fun. Not For Production.",
   "main": "build/index.js",
   "types": "src/types/index.d.ts",
