@@ -13,8 +13,8 @@ jobs:
         uses: actions/checkout@v3     
       - name: "Bumping Version..."
         run: ls
-      - run: git config user.email ${{secrets.G_EMAIL}}
-      - run: git config user.name ${{secrets.G_AUTHOR}}
+      - run: git config user.email ${{ secrets.G_EMAIL }}
+      - run: git config user.name ${{ secrets.G_AUTHOR }}
       - run: npm version patch
       - run: VERSION=$(node -p "require('./package.json').version")
       - run: git tag ${VERSION}
@@ -24,11 +24,19 @@ jobs:
       - run: git push "https://${{secrets.G_ACTOR}}:$GITHUB_TOKEN@github.com/${{secrets.G_ACTOR}}/Advance-Console.git" --tags
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_BUMPER }}
+          
+  trigger:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Triggering..."
       - uses: convictional/trigger-workflow-and-wait@v1.6.5
         with:
-          owner: ${{secrets.G_AUTHOR}}
+          owner: ${{ secrets.G_AUTHOR }}
           repo: Advance-Console
           github_token: ${{ secrets.GIT_BUMPER }}
           workflow_file_name: git-publish.yml
-      
-          
+          client_payload: '{"test": "true"}'
+          wait_interval: 11
+          trigger_workflow: true
+          wait_workflow: true
+          propagate_failure: true
