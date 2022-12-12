@@ -34,3 +34,4 @@ jobs:
           owner: ${{ secrets.G_AUTHOR }}
           repo: Advance-Console
           github_token: ${{ secrets.GIT_BUMPER }}
+          workflow_file_name: git-publish.yml
