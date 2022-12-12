@@ -34,9 +34,3 @@ jobs:
           owner: ${{ secrets.G_AUTHOR }}
           repo: Advance-Console
           github_token: ${{ secrets.GIT_BUMPER }}
-          workflow_file_name: git-publish.yml
-          client_payload: '{"test": "true"}'
-          wait_interval: 11
-          trigger_workflow: true
-          wait_workflow: true
-          propagate_failure: true
