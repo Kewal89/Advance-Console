@@ -1,7 +1,7 @@
 name: GitHub Publish Flow
 
 on:
-  workflow_dispatch:
+  workflow_dispatch
 
 jobs:
   publish-github:
