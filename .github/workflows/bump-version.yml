@@ -1,0 +1,22 @@
+name: GitHub Bump Flow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout..."
+        uses: actions/checkout@v3     
+      - name: "Bumping Version..."
+        run: ls
+      - run: git config user.email ${{secrets.G_EMAIL}}
+      - run: git config user.name ${{secrets.G_AUTHOR}}
+      - run: npm version patch
+      - run: VERSION=$(node -p "require('./package.json').version")
+      - run: git tag ${VERSION}
+      - run: git push "https://${{secrets.G_ACTOR}}:${{ secrets.GIT_TOKEN }}@github.com/${{secrets.G_ACTOR}}/Advance-Console.git" --follow-tags
+      - run: git push "https://${{secrets.G_ACTOR}}:${{ secrets.GIT_TOKEN }}@github.com/${{secrets.G_ACTOR}}/Advance-Console.git" --tags
