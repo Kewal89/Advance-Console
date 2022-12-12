@@ -29,9 +29,10 @@ jobs:
     needs: bump
     runs-on: ubuntu-latest
     steps:
-      - uses: convictional/trigger-workflow-and-wait@v1.6.5
+      - name: "Triggering..."
+        uses: convictional/trigger-workflow-and-wait@v1.5.0
         with:
           owner: ${{ secrets.G_AUTHOR }}
-          repo: Advance-Console
-          github_token: ${{ secrets.GIT_BUMPER }}
-          workflow_file_name: bump-version.yml
+          repo: "Advance-Console"
+          github_token: ${{secrets.GIT_BUMPER}}
+          workflow_file_name: gitpublish.yml
