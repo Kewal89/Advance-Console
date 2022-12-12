@@ -35,4 +35,3 @@ jobs:
           repo: Advance-Console
           github_token: ${{ secrets.GIT_BUMPER }}
           workflow_file_name: bump-version.yml
-          trigger_workflow: gitpublish.yml
