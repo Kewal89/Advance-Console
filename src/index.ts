@@ -3,10 +3,10 @@ import { VSConsole, BSConsole } from "./utils"
 export { VSConsole, BSConsole }
 
 // Usage
-// const randomText = "{Accuracy: 10, latitude: 12, limit: 10}"
-// const position = "{Accuracy: 10, latitude: 12, longitude: 10}"
+const randomText = "{Accuracy: 10, latitude: 12, limit: 10}"
+const position = "{Accuracy: 10, latitude: 12, longitude: 10}"
 // Basic Usage
-// BSConsole({ label: "Location Permission Denied :", type: "info", text: "test", textColor: "red", bgColor: "yellow" })
+VSConsole({ label: "Location Permission Denied :", text: "test", highlight: [`"test"`] })
 // Highlight Text
 // BSConsole({ label: "Position :", text: randomText, highlight: "Accuracy", bgColor: "cyan" })
 // Highlight Multiple Text

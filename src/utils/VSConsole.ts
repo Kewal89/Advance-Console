@@ -1,8 +1,13 @@
 import { VSConsoleTypes } from "../types/index.js"
+import { FinalizeOptions } from "./support"
 
-const VSConsole = (props: VSConsoleTypes) => {
-  const CONSOLE_TYPE = props.type ?? "info"
-  const COLOR_LABEL_TEXT = props.whole ?? false
+const VSConsole = async (props: VSConsoleTypes) => {
+  const Configs = await FinalizeOptions("vscode")
+
+  const CONSOLE_TYPE = props.type ?? Configs.type
+  const COLOR_LABEL_TEXT = props.whole ?? Configs.whole
+  const TEXT_COLOR = props.textColor ?? Configs.textColor
+  const BG_COLOR = props.bgColor ?? Configs.bgColor
 
   const RED_TEXT = "\u001b[1;31m"
   const GREEN_TEXT = "\u001b[1;32m"
@@ -21,34 +26,34 @@ const VSConsole = (props: VSConsoleTypes) => {
   const RESET_ALL = "\u001b[0m"
 
   var renderText = "" // Console Text
-  var conText = "" // Console Text Color
-  var conBG = "" // Console Text Background
+  var conText = Configs.textColor // Console Text Color
+  var conBG = Configs.bgColor // Console Text Background
 
-  if (props.textColor === "red") {
+  if (TEXT_COLOR === "red") {
     conText = RED_TEXT
-  } else if (props.textColor === "green") {
+  } else if (TEXT_COLOR === "green") {
     conText = GREEN_TEXT
-  } else if (props.textColor === "yellow") {
+  } else if (TEXT_COLOR === "yellow") {
     conText = YELLOW_TEXT
-  } else if (props.textColor === "blue") {
+  } else if (TEXT_COLOR === "blue") {
     conText = BLUE_TEXT
-  } else if (props.textColor === "purple") {
+  } else if (TEXT_COLOR === "purple") {
     conText = PURPLE_TEXT
-  } else if (props.textColor === "cyan") {
+  } else if (TEXT_COLOR === "cyan") {
     conText = CYAN_TEXT
   }
 
-  if (props.bgColor === "red") {
+  if (BG_COLOR === "red") {
     conBG = RED_BG
-  } else if (props.bgColor === "green") {
+  } else if (BG_COLOR === "green") {
     conBG = GREEN_BG
-  } else if (props.bgColor === "yellow") {
+  } else if (BG_COLOR === "yellow") {
     conBG = YELLOW_BG
-  } else if (props.bgColor === "blue") {
+  } else if (BG_COLOR === "blue") {
     conBG = BLUE_BG
-  } else if (props.bgColor === "purple") {
+  } else if (BG_COLOR === "purple") {
     conBG = PURPLE_BG
-  } else if (props.bgColor === "cyan") {
+  } else if (BG_COLOR === "cyan") {
     conBG = CYAN_BG
   }
 
