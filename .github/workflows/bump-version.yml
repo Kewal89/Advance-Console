@@ -1,9 +1,7 @@
 name: GitHub Bump Flow
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch
 
 jobs:
   bump:
@@ -24,15 +22,3 @@ jobs:
       - run: git push "https://${{secrets.G_ACTOR}}:$GITHUB_TOKEN@github.com/${{secrets.G_ACTOR}}/Advance-Console.git" --tags
         env:
           GITHUB_TOKEN: ${{ secrets.GIT_BUMPER }}
-          
-  trigger:
-    needs: bump
-    runs-on: ubuntu-latest
-    steps:
-      - name: "Triggering..."
-        uses: convictional/trigger-workflow-and-wait@v1.6.5
-        with:
-          owner: ${{ secrets.G_AUTHOR }}
-          repo: "Advance-Console"
-          github_token: ${{secrets.GIT_BUMPER}}
-          workflow_file_name: gitpublish.yml
