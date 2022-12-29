@@ -1,7 +1,9 @@
 name: GitHub Publish Flow
 
 on:
-  workflow_dispatch
+  push:
+    branches:
+      - main
 
 jobs:
   publish-github:
@@ -24,7 +26,7 @@ jobs:
       - name: "Switching Directory > Build..."
         run: cd build
       - name: "Publishing To GitHub..."
-        run: npm publish   
+        run: npm publish build
         env:
           NODE_AUTH_TOKEN: ${{secrets.GIT_TOKEN}}
           
@@ -49,7 +51,7 @@ jobs:
       - name: "Switching Directory > Build..."
         run: cd build
       - name: "Publishing To GitHub..."
-        run: npm publish   
+        run: npm publish build  
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}        
   
