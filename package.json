@@ -7,7 +7,6 @@
   "version": "1.1.35",
   "description": "Advance Consoles For VS Code & Browsers. Created For Fun. Not For Production.",
   "main": "index.js",
-  "types": "types/index.d.ts",
   "scripts": {
     "dev": "yarn build && nodemon src/index.ts",
     "build": "rm -rf build/ && npx tsc && cp -R src/types build && prettier --write build/**/*",
