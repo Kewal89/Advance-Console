@@ -1,10 +1,11 @@
-import fs from 'fs'
+import { readFileSync } from 'fs-extra'
 import { OptionsTypes } from '../types/index'
 
 const FinalizeOptions = async (type: OptionsTypes) => {
   let Configs: any
   try {
-    Configs = await fs.readFileSync('../../.adv.json') 
+    Configs = await readFileSync('../../.adv.json')
+    // console.info(Configs)
   } catch (err) {
     new Error(`Error: File Not Found.`)
   }
