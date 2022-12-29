@@ -20,14 +20,15 @@ jobs:
         uses: Borales/actions-yarn@v4.2.0
         with:
           cmd: install
-      - run: VERSION=$(node -p "require('./package.json').version")
-      - run: echo "Previous Version ${VERSION}"
-      - name: "Creating Package Bundle..."
-        run: yarn build
-      - name: "Switching Directory > Build..."
-        run: cd build
-      - name: "Publishing To GitHub..."
-        run: npm publish build
+      - name: "Pipeline Job 1..."
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "Creating Package Bundle... $VERSION"
+          yarn build
+          echo "Switching Directory > Build..."
+          cd build
+          echo "Publishing To GitHub..."
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.GIT_TOKEN}}
           
@@ -46,14 +47,16 @@ jobs:
         uses: Borales/actions-yarn@v4.2.0
         with:
           cmd: install
-      - run: VERSION=$(node -p "require('./package.json').version")
-      - run: echo "Previous Version ${VERSION}"
-      - name: "Creating Package Bundle..."
-        run: yarn build
-      - name: "Switching Directory > Build..."
-        run: cd build
-      - name: "Publishing To GitHub..."
-        run: npm publish build  
+          
+      - name: "Pipeline Job 2..."
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "Creating Package Bundle... $VERSION"
+          yarn build
+          echo "Switching Directory > Build..."
+          cd build
+          echo "Publishing To NPMJS..."
+          npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}        
   
