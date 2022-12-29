@@ -1,13 +1,22 @@
-import { readFileSync } from 'fs-extra'
 import { OptionsTypes } from '../types/index'
 
 const FinalizeOptions = async (type: OptionsTypes) => {
   let Configs: any
-  try {
-    Configs = await readFileSync('../../.adv.json')
-    // console.info(Configs)
-  } catch (err) {
-    new Error(`Error: File Not Found.`)
+  let fs: any
+  if (type === "vscode") {
+    try {
+      fs = require("fs")
+      try {
+        const { readFileSync } = require('fs-extra')
+        Configs = await readFileSync('../../.adv.json')
+
+        // console.info(Configs)
+      } catch (err) {
+        new Error(`Error: File Not Found.`)
+      }
+    } catch {
+      new Error(`Error: Switching To Browser Only Mode.`)
+    }
   }
 
   const Options = ReturnOptions(Configs ? JSON.parse(Configs.toString()) : {}, type)

@@ -1,0 +1,16 @@
+{
+  "vscode": {
+    "type": "warn",
+    "whole": true,
+    "textColor": "cyan",
+    "bgColor": "blue"
+  },
+  "browser": {
+    "type": "warn",
+    "textColor": "#fff",
+    "bgColor": "#ff0000",
+    "css": {
+      "font-size": "20px"
+    }
+  }
+}
